@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-splashscreen:1.0.0")
 
     implementation(libs.android.mail)
     implementation(libs.android.activation)
