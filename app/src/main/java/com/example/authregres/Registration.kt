@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.authregres.fragments.HomeNavigation
 
 class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +51,9 @@ class Registration : AppCompatActivity() {
                 userLogin.text.clear()
                 userEmail.text.clear()
                 userPass.text.clear()
+
+                val intent = Intent(this, HomeNavigation::class.java)
+                startActivity(intent)
             }
         }
 

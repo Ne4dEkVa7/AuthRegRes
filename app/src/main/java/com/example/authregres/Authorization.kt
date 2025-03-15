@@ -11,10 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
-
-
-
+import com.example.authregres.fragments.HomeNavigation
 
 
 class Authorization: AppCompatActivity() {
@@ -55,6 +52,9 @@ class Authorization: AppCompatActivity() {
                     Toast.makeText(this, "Авторизашия успешна, пользователь $login найден", Toast.LENGTH_LONG).show()
                     userLogin.text.clear()
                     userPass.text.clear()
+
+                    val intent = Intent(this, HomeNavigation::class.java)
+                    startActivity(intent)
                 }
                 else
                 {
