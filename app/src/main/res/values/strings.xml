@@ -11,6 +11,8 @@
     <string name="create_user_text">Зарегистрироваться</string>
     <string name="first_time_text">Вы у нас впервые?</string>
     <string name="forget_password">Восстановление пароля</string>
+    <string name="nav_open">Открыть</string>
+    <string name="nav_close">Закрыть</string>
 
 
 </resources>
