@@ -2,16 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/soft_green"
     android:gravity="bottom"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_camera"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/drawer_header_image"
+        android:layout_marginStart="35dp"
+        android:scaleType="fitXY"
+        android:padding="5dp"
+        app:strokeWidth="5dp"
+        app:shapeAppearanceOverlay="@style/circular"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/icons_default_avatar"
+        />
 
     <TextView
         android:layout_width="wrap_content"

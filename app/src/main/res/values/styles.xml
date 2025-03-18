@@ -7,4 +7,7 @@
         <item name="itemPaddingBottom">8dp</item>
         <item name="itemHorizontalPadding">32dp</item>
     </style>
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

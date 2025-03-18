@@ -13,6 +13,6 @@
     <string name="forget_password">Восстановление пароля</string>
     <string name="nav_open">Открыть</string>
     <string name="nav_close">Закрыть</string>
-
+    <string name="in_development">В разработке</string>
 
 </resources>
