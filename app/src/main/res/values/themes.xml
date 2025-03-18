@@ -3,9 +3,9 @@
     <style name="Base.Theme.AuthRegRes" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
         <item name="colorPrimary">@color/soft_green</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/soft_green</item>
+        <item name="android:statusBarColor">@color/soft_green</item>
     </style>
 
     <style name="Theme.AuthRegRes" parent="Base.Theme.AuthRegRes" />

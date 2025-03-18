@@ -3,6 +3,7 @@ package com.example.authregres.fragments
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -17,7 +18,7 @@ import com.google.android.material.navigation.NavigationView
 
 class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var fragmentManager: FragmentManager
-    private lateinit var binding:HomeNavigationScreenBinding
+    private lateinit var binding: HomeNavigationScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,12 +26,13 @@ class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         val toggle = ActionBarDrawerToggle(
-            this,binding.drawerLayout,binding.toolbar,R.string.nav_open,R.string.nav_close)
+            this, binding.drawerLayout, binding.toolbar, R.string.nav_open, R.string.nav_close
+        )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         binding.navigationView.setNavigationItemSelectedListener(this)
         binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> openFragment(HomeFragment())
                 R.id.profile -> openFragment(ProfileFragment())
@@ -41,18 +43,24 @@ class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
-        binding.fab.setOnClickListener(){
-            Toast.makeText(this,"+", Toast.LENGTH_LONG).show()
+        binding.fab.setOnClickListener() {
+            Toast.makeText(this, "+", Toast.LENGTH_LONG).show()
         }
     }
-        private fun setCurrentFragment(fragment: Fragment)=
-            supportFragmentManager.beginTransaction().apply{
-                replace(R.id.flFragment, fragment)
-                commit()
-            }
-    private fun openFragment(fragment: Fragment){
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> openFragment(HomeFragment())
+            R.id.profile -> openFragment(ProfileFragment())
+            R.id.cart -> openFragment(CartFragment())
+            R.id.settings -> openFragment(SettingsFragment())
+            R.id.logout -> Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show()
+        }
+        return true
+    }
+
+    private fun openFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.flFragment, fragment)
         fragmentTransaction.commit()
     }
-    }
+}
