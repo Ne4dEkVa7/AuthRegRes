@@ -9,12 +9,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import java.io.ByteArrayOutputStream
 
-class DBHelper (private val context: Context, private val factory: SQLiteDatabase.CursorFactory?) :
-    SQLiteOpenHelper(context, "database", factory, 1)
+class DBHelper(private val context: Context, private val factory: SQLiteDatabase.CursorFactory?) :
+    SQLiteOpenHelper(context, "database", factory, 2)
 {
     override fun onCreate(db: SQLiteDatabase?)
     {
-        val query = "CREATE TABLE users (id integer primary key autoincrement default null, login text, email text, password text)"
+        val query = "CREATE TABLE users (id integer primary key autoincrement default null, login text, email text, password text, profile_image blob)"
         db!!.execSQL(query)
     }
 
@@ -37,14 +37,14 @@ class DBHelper (private val context: Context, private val factory: SQLiteDatabas
         return rowsAffected > 0
 
     }
-    @SuppressLint("Recycle")
+    @SuppressLint("Recycle", "SuspiciousIndentation")
     fun loadProfileImage(email: String): Bitmap? {
         val db = this.readableDatabase
         val cursor = db.rawQuery( "SELECT profile_image FROM users WHERE email = ?", arrayOf(email))
         return if (cursor.moveToFirst()) {
         val imageBytes = cursor.getBlob(cursor.getColumnIndexOrThrow("profile_image"))
             if (imageBytes != null) {
-            BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
         } else { null }
     } else { null }
 }
@@ -96,6 +96,19 @@ class DBHelper (private val context: Context, private val factory: SQLiteDatabas
         }
         else
         {
+            null
+        }
+    }
+
+    @SuppressLint("Recycle")
+    fun getUserByLogin(login: String): User? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM users WHERE login = ?", arrayOf(login))
+        return if (cursor.moveToFirst()) {
+            val email = cursor.getString(cursor.getColumnIndexOrThrow("email"))
+            val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+            User(login, email, password)
+        } else {
             null
         }
     }

@@ -12,6 +12,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.authregres.fragments.HomeNavigation
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
+
 
 
 class Authorization: AppCompatActivity() {
@@ -40,7 +42,7 @@ class Authorization: AppCompatActivity() {
         {
             val login = userLogin.text.toString().trim()
             val password = userPass.text.toString().trim()
-            if (login == "" || password == "")
+            if (login.isEmpty() || password.isEmpty())
             {
                 Toast.makeText(this, "Вce пoля должны быть заполнены", Toast.LENGTH_LONG).show()
             }
@@ -53,8 +55,22 @@ class Authorization: AppCompatActivity() {
                     userLogin.text.clear()
                     userPass.text.clear()
 
-                    val intent = Intent(this, HomeNavigation::class.java)
-                    startActivity(intent)
+                    val user = db.getUserByLogin(login)
+                    if (user != null) {
+                        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                        with(sharedPreferences.edit()) {
+                            putString("login", login)
+                            putString("email", user.email)
+                            apply()
+                        }
+
+
+                        val intent = Intent(this, HomeNavigation::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Ошибка: email пользователя не найден", Toast.LENGTH_LONG).show()
+                    }
                 }
                 else
                 {

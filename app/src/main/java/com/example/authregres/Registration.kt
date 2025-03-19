@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.authregres.fragments.HomeNavigation
+import com.example.authregres.fragments.ProfileFragment
 
 class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +53,9 @@ class Registration : AppCompatActivity() {
                 userEmail.text.clear()
                 userPass.text.clear()
 
-                val intent = Intent(this, HomeNavigation::class.java)
+                val intent = Intent(this, ProfileFragment::class.java)
                 startActivity(intent)
+
             }
         }
 

@@ -25,6 +25,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/drawer_header_login"
         android:text="Имя пользователя"
         android:textStyle="bold"
         android:textSize="16sp"
@@ -33,6 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/drawer_header_email"
         android:text="Ваша @почта.ру"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"
