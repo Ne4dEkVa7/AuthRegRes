@@ -1,4 +1,4 @@
-package com.example.authregres.Presentation.Home.fragments
+package com.example.authregres.Domain
 
 import android.content.Context
 import android.content.Intent
@@ -33,8 +33,10 @@ class SharedViewModel: ViewModel() {
             val updatedList = currentList.toMutableList()
             updatedList.add(item)
             selectedItems.value = updatedList
-            updateTotalCost(selectedItems.value ?: emptyList())
         }
+        updateTotalCost(selectedItems.value ?: emptyList())
+    }
+
         fun removeItem(item: Item) {
             val currentList = selectedItems.value ?: mutableListOf()
             val updatedList = currentList.toMutableList()
@@ -52,27 +54,28 @@ class SharedViewModel: ViewModel() {
                 updateTotalCost(currentList)
             }
         }
-        fun decreaseQuantity (item: Item) {
-            val currentList = selectedItems.value?: mutableListOf()
-            val existingItem = currentList. find{ it.title == item.title}
-        if (existingItem != null) {
-            if (existingItem.quantity > 1) {
-                existingItem.quantity -= 1
-            } else { removeItem(existingItem)
-            }
-
-            selectedItems.value = currentList
-            updateTotalCost (currentList)
-        }
-    }
-        fun showDetails(context: Context, item: Item) {
-        }
+    fun showDetails(context: Context, item: Item) {
         val intent = Intent(context, ItemDetails::class.java).apply {
+            putExtra("item_title", item.title)
+            putExtra("item_price", item.price)
+            putExtra("item_description", item.description)
+            putExtra("item_image", item.imageRestId)
         }
-        putExtra("item_title", item.title)
-        putExtra("item_price", item.price)
-        putExtra("item_description", item.description)
-        putExtra("item_image", item.imageRestId)
         context.startActivity(intent)
     }
-}
+
+        fun decreaseQuantity(item: Item) {
+            val currentList = selectedItems.value ?: mutableListOf()
+            val existingItem = currentList.find { it.title == item.title }
+            if (existingItem != null) {
+                if (existingItem.quantity > 1) {
+                    existingItem.quantity -= 1
+                } else {
+                    removeItem(existingItem)
+                }
+
+                selectedItems.value = currentList
+                updateTotalCost(currentList)
+            }
+        }
+    }

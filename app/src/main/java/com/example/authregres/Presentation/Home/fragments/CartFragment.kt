@@ -6,24 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.authregres.Adapters.CartAdapter
 import com.example.authregres.Adapters.ItemAdapter
+import com.example.authregres.Domain.SharedViewModel
 import com.example.authregres.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CartFragment : Fragment() {
-
-
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CartAdapter
@@ -33,27 +25,30 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.settings_fragment, container, false)
-    }
+        val view = inflater.inflate(R.layout.cart_fragment, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        totalCostTextView = view.findViewById(R.id.total_item_cost)
+
+        adapter = CartAdapter(
+            emptyList(),
+            onHeaderImageClick = { item -> sharedViewModel.showDetails(requireContext(), item) },
+            onDeleteClick = { item -> sharedViewModel.removeItem(item) },
+            onIncreaseQuantity = { item -> sharedViewModel.increaseQuantity(item) },
+            onDecreaseQuantity = { item -> sharedViewModel.decreaseQuantity(item) }
+        )
+        recyclerView.adapter = adapter
+
+        sharedViewModel.selectedItems.observe(viewLifecycleOwner) {
+            items -> adapter.updateItems(items)
+        }
+        sharedViewModel.totalCost.observe(viewLifecycleOwner) {total ->
+            totalCostTextView.text = "Общая сумма: $total"
+        }
+        return view
     }
 }

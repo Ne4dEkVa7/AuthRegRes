@@ -3,7 +3,7 @@ package com.example.authregres
 import com.example.authregres.Data.Item
 
 
-class Filter (private val items: List<Item>) {
+class Filter (private var items: List<Item>) {
 
     fun filterByPrice (maxPrice: Int): List<Item> {
         return items.filter {
@@ -16,8 +16,10 @@ class Filter (private val items: List<Item>) {
                 it.title.contains (keyword, ignoreCase = true)
             }
         }
-    }
-
     fun resetFilter(): List<Item> {
         return items
     }
+    }
+
+
+

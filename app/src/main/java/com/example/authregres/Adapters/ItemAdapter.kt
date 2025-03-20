@@ -2,6 +2,7 @@ package com.example.authregres.Adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
@@ -18,7 +19,7 @@ class ItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return ItemViewHolder(view, onAddToCartClick, onDetailsClick)
+        return ItemViewHolder(view, onAddToCartClick,onHeaderImageClick, onDetailsClick)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -37,7 +38,7 @@ class ItemAdapter(
 
 
     class ItemViewHolder(
-        itemView: android.view.View,
+        itemView: View,
         private val onAddToCartClick: (Item) -> Unit,
         private val onHeaderImageClick: (Item) -> Unit,
         private val onDetailsClick: (Item) -> Unit
@@ -54,6 +55,7 @@ class ItemAdapter(
             subhead.text = item.price
             body.text = item.description
             headerImage.setImageResource(item.imageRestId)
+
             buttonAddToCart.setOnClickListener{
                 onAddToCartClick(item)
             }

@@ -18,6 +18,7 @@ import com.example.authregres.R
 import com.example.authregres.databinding.HomeNavigationScreenBinding
 import com.example.authregres.Presentation.Home.fragments.CartFragment
 import com.example.authregres.Presentation.Home.fragments.HomeFragment
+import com.example.authregres.Presentation.Home.fragments.ItemFragment
 import com.example.authregres.Presentation.Home.fragments.ProfileFragment
 import com.example.authregres.Presentation.Home.fragments.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -65,7 +66,7 @@ class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
         binding.fab.setOnClickListener() {
-            Toast.makeText(this, "+", Toast.LENGTH_LONG).show()
+            openFragment(ItemFragment())
         }
 
     }
