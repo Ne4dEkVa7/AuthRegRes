@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#201E25"
-    tools:context=".Registration">
+    tools:context=".Presentation.Registration">
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="40dp"

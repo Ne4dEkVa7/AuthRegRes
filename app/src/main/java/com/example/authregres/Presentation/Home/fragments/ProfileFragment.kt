@@ -1,4 +1,4 @@
-package com.example.authregres.fragments
+package com.example.authregres.Presentation.Home.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.Context
@@ -16,7 +16,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatButton
-import com.example.authregres.DBHelper
+import com.example.authregres.Data.DBHelper
+import com.example.authregres.Presentation.Home.HomeNavigation
 import com.example.authregres.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton

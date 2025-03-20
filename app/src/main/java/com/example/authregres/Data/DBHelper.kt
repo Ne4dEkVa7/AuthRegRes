@@ -1,4 +1,4 @@
-package com.example.authregres
+package com.example.authregres.Data
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.example.authregres
+package com.example.authregres.Presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.authregres.fragments.HomeNavigation
-import com.example.authregres.fragments.ProfileFragment
+import com.example.authregres.Data.DBHelper
+import com.example.authregres.Data.User
+import com.example.authregres.R
+import com.example.authregres.Presentation.Home.fragments.ProfileFragment
 
 class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

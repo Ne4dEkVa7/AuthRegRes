@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AuthRegRes"
         tools:targetApi="31">
         <activity
-            android:name=".Registration"
+            android:name=".Presentation.Registration"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Authorization"
+            android:name=".Presentation.Authorization"
             android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>
@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ForgetPassword"
+        <activity android:name=".Presentation.ForgetPassword"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -41,7 +41,7 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".fragments.HomeNavigation"
+        <activity android:name=".Presentation.Home.HomeNavigation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -49,6 +49,11 @@
 
             </intent-filter>
         </activity>
+        <activity android:name=".Presentation.Home.ItemDetails"
+            android:exported="false">
+        </activity>
+
+
 
 
 

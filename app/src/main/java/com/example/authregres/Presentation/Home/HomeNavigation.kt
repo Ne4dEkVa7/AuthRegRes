@@ -1,25 +1,25 @@
-package com.example.authregres.fragments
+package com.example.authregres.Presentation.Home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.text.TextUtils.replace
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.authregres.Authorization
-import com.example.authregres.DBHelper
+import com.example.authregres.Presentation.Authorization
+import com.example.authregres.Data.DBHelper
 import com.example.authregres.R
 import com.example.authregres.databinding.HomeNavigationScreenBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.authregres.Presentation.Home.fragments.CartFragment
+import com.example.authregres.Presentation.Home.fragments.HomeFragment
+import com.example.authregres.Presentation.Home.fragments.ProfileFragment
+import com.example.authregres.Presentation.Home.fragments.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
@@ -67,6 +67,7 @@ class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         binding.fab.setOnClickListener() {
             Toast.makeText(this, "+", Toast.LENGTH_LONG).show()
         }
+
     }
 
     fun updateNavigationHeader(login: String, email: String) {
@@ -127,6 +128,7 @@ class HomeNavigation : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             show()
         }
     }
+
 
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {

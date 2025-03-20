@@ -1,4 +1,4 @@
-package com.example.authregres
+package com.example.authregres.Presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.authregres.fragments.HomeNavigation
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
-
+import com.example.authregres.Data.DBHelper
+import com.example.authregres.R
+import com.example.authregres.Presentation.Home.HomeNavigation
 
 
 class Authorization: AppCompatActivity() {

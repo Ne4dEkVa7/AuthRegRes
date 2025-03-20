@@ -1,4 +1,4 @@
-package com.example.authregres
+package com.example.authregres.Domain
 
 import android.util.Log
 import java.util.Properties
