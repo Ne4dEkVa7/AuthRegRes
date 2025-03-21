@@ -38,7 +38,7 @@ class ItemFragment : Fragment() {
     private lateinit var filter: Filter
     private lateinit var filterButton: ImageView
     private lateinit var gridChangeButton: ImageView
-    private lateinit var sharedViewModel: ViewModel
+    private lateinit var sharedViewModel: SharedViewModel
 
 
     @SuppressLint("MissingInflatedId")
